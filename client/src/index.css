@@ -12,23 +12,24 @@
 html, body {
     overflow-x: hidden;
     scroll-behavior: smooth;
+    font-family: 'Arial', sans-serif;
 }
 
 .light-theme {
-    --background: url("https://tailwindcss.com/_next/static/media/hero@75.b2469a49.jpg");
+    --background: url("https://images.pexels.com/photos/4464918/pexels-photo-4464918.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
     --primary: #F8FAFC;
     --secondary: #0F172A;
-    --txt: #000;
+    --txt: #333;
     --heading: #2dd9fe;
     --btn-color: #fff;
     --btn-background: #5f99be;
     --search-background: #000;
     --c: #2dd9fe;
-    --hover_bg_change: backdrop-filter:6px;
+    --hover_bg_change: backdrop-filter: blur(6px);
 }
 
 .dark-theme {
-    --background: url("https://tailwindcss.com/_next/static/media/hero-dark@90.dba36cdf.jpg");
+    --background: url("https://images.pexels.com/photos/952670/pexels-photo-952670.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
     --primary: rgb(30,41,59);
     --secondary: #D5DDF0;
     --txt: #fff;
@@ -54,6 +55,7 @@ nav {
     height: 70px;
     backdrop-filter: blur(4px);
     border-bottom: 0.1px solid grey;
+    transition: background-color 0.3s ease;
 }
 
 .heading {
@@ -91,7 +93,7 @@ ul li ul {
     height: 16px;
     width: 16px;
     padding-top: 2px;
-    transition: 0.2s ease-in-out;
+    transition: transform 0.2s ease-in-out;
 }
 
 .down-arrow-icon > path {
@@ -177,8 +179,8 @@ ul li ul li a:hover {
     align-items: center;
 }
 
-.fa-moon {color: #f1c40f;}
-.fa-sun {color: #f39c12;}
+.fa-moon { color: #f1c40f; }
+.fa-sun { color: #f39c12; }
 
 .checkbox-label .ball {
     background-color: #fff;
@@ -212,9 +214,9 @@ ul li ul li a:hover {
     color: var(--btn-color);
     width: 130.51px;
     height: 50px;
-    border-top-right-radius: 4px;
+    border-radius: 4px;
     margin-left: -2px;
-    border-bottom-right-radius: 4px;
+    transition: background-color 0.3s ease;
 }
 
 .pagination-btn {
@@ -230,18 +232,14 @@ ul li ul li a:hover {
     height: 500px;
     overflow: hidden;
     border-radius: 15px;
-    box-shadow: 
-        0 0 10px rgba(0, 0, 0, 0.5),
-        0 0 10px rgba(0, 0, 0, 0.5),
-        0 0 10px rgba(0, 0, 0, 0.5),
-        0 0 10px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    transition: transform 0.2s ease-in-out, box-shadow 0.3s ease;
 }
 
 .everything-card:hover {
     transform: translateY(-2px);
-    transition: transform 0.2s ease-in-out;
     background: var(--primary);
-    box-shadow: 0 0 11px grey; 
+    box-shadow: 0 0 11px grey;
 }
 
 .everything-card-img {
@@ -253,7 +251,7 @@ ul li ul li a:hover {
 .title {
     font-family: "Freeman", sans-serif;
     font-weight: 400;
-    font-size: 22px;
+    font-size: 1.375rem;
 }
 
 footer {
@@ -264,7 +262,8 @@ footer {
 /* Loader */
 .loader-container {
     height: 100vh;
-    padding: 0; 
+    display: flex;
+    justify-content: center;
     align-items: center;
 }
 
@@ -273,28 +272,14 @@ footer {
     aspect-ratio: 1;
     display: grid;
     color: var(--heading);
-    background: radial-gradient(farthest-side, currentColor calc(100% - 6px), #0000 calc(100% - 5px) 0);
-    -webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - 13px), #000 calc(100% - 12px));
+    background: radial-gradient(farthest-side, currentColor calc(100% - 6px), transparent calc(100% - 5px) 0);
+    mask: radial-gradient(farthest-side, transparent calc(100% - 13px), #000 calc(100% - 12px));
+    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 13px), #000 calc(100% - 12px));
     border-radius: 50%;
     animation: l19 2s infinite linear;
 }
 
-.loader::before,
-.loader::after {    
-    content: "";
-    grid-area: 1/1;
-    background:
-        linear-gradient(currentColor 0 0) center,
-        linear-gradient(currentColor 0 0) center;
-    background-size: 100% 10px, 10px 100%;
-    background-repeat: no-repeat;
-}
-
-.loader::after {
-    transform: rotate(45deg);
-}
-
-@keyframes l19 { 
+@keyframes l19 {
     100% { transform: rotate(1turn) }
 }
 
@@ -307,8 +292,8 @@ footer {
 
 @media only screen and (min-width: 640px) and (max-width: 689px) {
     nav {
-        justify-content: space-between !important;
-        padding: 0 5% !important;
+        justify-content: space-between;
+        padding: 0 5%;
     }
 }
 

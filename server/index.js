@@ -1,18 +1,20 @@
 require("dotenv").config();
 const express = require("express");
+const { urlencoded, json } = express;
 const axios = require("axios");
 const cors = require("cors");
+
 const app = express();
 
 // CORS configuration
 app.use(cors({
-  origin: '*', // Be cautious with this in production
+  origin: '*', 
   methods: ['GET', 'POST', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+app.use(urlencoded({ extended: true }));
+app.use(json());
 
 // Helper function for API requests
 async function makeApiRequest(url) {
@@ -38,7 +40,7 @@ async function makeApiRequest(url) {
 app.get("/all-news", async (req, res) => {
   let pageSize = parseInt(req.query.pageSize) || 80;
   let page = parseInt(req.query.page) || 1;
-  let q = req.query.q || 'world'; // Default search query if none provided
+  let q = req.query.q || 'world'; 
 
   let url = `https://newsapi.org/v2/everything?q=${encodeURIComponent(q)}&page=${page}&pageSize=${pageSize}&apiKey=${process.env.API_KEY}`;
   const result = await makeApiRequest(url);
@@ -69,7 +71,7 @@ app.get('/', (req, res) => {
   res.send('Hello, World!');
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 2000;
 app.listen(PORT, function () {
   console.log(`Server is running at port ${PORT}`);
 });
