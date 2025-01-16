@@ -1,0 +1,12 @@
+
+{
+    "cardTitle": "Latest News",
+    "sourceLabel": "Source:",
+    "authorLabel": "Author:",
+    "publishedAtLabel": "Published At:",
+    "errorMessage": "Failed to load the news. Please try again later.",
+    "prevButton": "Prev",
+    "nextButton": "Next",
+    "ofText": "of"
+  }
+  

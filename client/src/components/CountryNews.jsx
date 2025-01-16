@@ -22,31 +22,36 @@ function CountryNews() {
   const pageSize = 6;
 
   useEffect(() => {
-    setIsLoading(true);
-    setError(null);
-    fetch(`https://news-aggregator-dusky.vercel.app/country/${params.iso}?page=${page}&pageSize=${pageSize}`)
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
-        throw new Error('Network response was not ok');
-      })
-      .then((myJson) => {
-        if (myJson.success) {
-          setTotalResults(myJson.data.totalResults);
-          setData(myJson.data.articles);
-        } else {
-          setError(myJson.message || 'An error occurred');
-        }
-      })
-      .catch((error) => {
-        console.error('Fetch error:', error);
-        setError('Failed to fetch news. Please try again later.');
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
-  }, [page, params.iso]);
+  setIsLoading(true);
+  setError(null);
+  
+  // Construct the fetch URL using the country ISO code from params
+  const newsApiUrl = `http://localhost:3000/country/in?page=1&pageSize=10`;
+
+  fetch(newsApiUrl)
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      }
+      throw new Error('Network response was not ok');
+    })
+    .then((myJson) => {
+      if (myJson.status === 'ok') {
+        setTotalResults(myJson.totalResults);
+        setData(myJson.articles);
+      } else {
+        setError(myJson.message || 'An error occurred');
+      }
+    })
+    .catch((error) => {
+      console.error('Fetch error:', error);
+      setError('Failed to fetch news. Please try again later.');
+    })
+    .finally(() => {
+      setIsLoading(false);
+    });
+}, [page, params.iso]);
+
 
   return (
     <>

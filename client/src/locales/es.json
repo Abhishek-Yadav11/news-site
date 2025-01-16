@@ -1,0 +1,12 @@
+
+{
+    "cardTitle": "Últimas Noticias",
+    "sourceLabel": "Fuente:",
+    "authorLabel": "Autor:",
+    "publishedAtLabel": "Publicado En:",
+    "errorMessage": "Error al cargar las noticias. Por favor, inténtelo de nuevo más tarde.",
+    "prevButton": "Anterior",
+    "nextButton": "Siguiente",
+    "ofText": "de"
+  }
+  

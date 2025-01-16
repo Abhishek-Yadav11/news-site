@@ -1,9 +1,13 @@
+import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 function Card(props) {
+  const { t } = useTranslation(); // Initialize translation hook
+
   return (
     <div className="everything-card mt-10">
       <div className="everything-card flex flex-wrap p-5 gap-1 mb-1">
-        <b className="title">{props.title}</b>
+        <b className="title">{t( props.title )}</b> 
         <div className="everything-card-img mx-auto">
           <img className="everything-card-img" src={props.imgUrl} alt="img" />
         </div>
@@ -14,7 +18,7 @@ function Card(props) {
         </div>
         <div className="info">
           <div className="source-info flex items-center gap-2">
-            <span className="font-semibold">Source:</span>
+            <span className="font-semibold">{t('sourceLabel')}</span> {/* Translated label */}
             <a
               href={props.url}
               target="_blank"
@@ -25,18 +29,17 @@ function Card(props) {
           </div>
           <div className="origin flex flex-col">
             <p className="origin-item">
-              <span className="font-semibold">Author:</span>
+              <span className="font-semibold">{t('authorLabel')}</span> {/* Translated label */}
               {props.author}
             </p>
             <p className="origin-item">
-              <span className="font-semibold">Published At:</span>
+              <span className="font-semibold">{t('publishedAtLabel')}</span> {/* Translated label */}
               ({props.publishedAt})
             </p>
           </div>
         </div>
       </div>
-
-      {/* Added the new card content with styles */}
+      {/* Other parts of the card */}
       <div className="flex lg:flex-row">
         <div
           className="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"

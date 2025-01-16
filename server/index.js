@@ -42,7 +42,7 @@ app.get("/all-news", async (req, res) => {
   let page = parseInt(req.query.page) || 1;
   let q = req.query.q || 'world'; 
 
-  let url = `https://newsapi.org/v2/everything?q=${encodeURIComponent(q)}&page=${page}&pageSize=${pageSize}&apiKey=${process.env.API_KEY}`;
+  let url = `https://newsapi.org/v2/everything?q=${q}&page=${page}&pageSize=${pageSize}&apiKey=${process.env.API_KEY}`;
   const result = await makeApiRequest(url);
   res.status(result.status).json(result);
 });
@@ -58,14 +58,18 @@ app.get("/top-headlines", async (req, res) => {
 });
 
 app.get("/country/:iso", async (req, res) => {
-  let pageSize = parseInt(req.query.pageSize) || 80;
-  let page = parseInt(req.query.page) || 1;
-  const country = req.params.iso;
+  let pageSize = parseInt(req.query.pageSize) || 80; 
+  let page = parseInt(req.query.page) || 1;         
+  const country = req.params.iso;                  
 
   let url = `https://newsapi.org/v2/top-headlines?country=${country}&apiKey=${process.env.API_KEY}&page=${page}&pageSize=${pageSize}`;
+  console.log("Constructed URL:", url); 
+
   const result = await makeApiRequest(url);
   res.status(result.status).json(result);
 });
+
+
 
 app.get('/', (req, res) => {
   res.send('Hello, World!');
